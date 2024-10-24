@@ -10,8 +10,12 @@ public class MainController implements Controller {
 
     @Override
     public ModelAndView handleRequest(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response) {
-        String action = request.getParameter("action");
-        if ("POST".equalsIgnoreCase(action)) {
+        String method = request.getParameter("_method");
+        if (method == null || method.isEmpty()) {
+            method = request.getMethod();
+        }
+
+        if ("POST".equalsIgnoreCase(method)) {
             return handlePostRequest(request, response);
         }
         return handleGetRequest(request, response);

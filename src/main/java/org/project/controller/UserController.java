@@ -16,7 +16,6 @@ public class UserController extends MainController {
         this.userService = userService;
     }
 
-
     @Override
     protected ModelAndView handleGetRequest(HttpServletRequest request, HttpServletResponse response) {
         List<User> users = userService.fetchAll();
