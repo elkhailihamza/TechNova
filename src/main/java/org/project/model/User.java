@@ -1,7 +1,18 @@
 package org.project.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "user_name", nullable = false)
     private String username;
+
+    @Column(name = "pass_word", nullable = false)
     private String password;
 
     public User(String username, String password) {
@@ -10,6 +21,14 @@ public class User {
     }
 
     public User(){};
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
