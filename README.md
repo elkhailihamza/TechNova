@@ -105,3 +105,27 @@ A **bean's scope** refers to the lifecycle of the bean; things like how long the
 **Spring MVC** is a Java framework which is used to build web applications. It follows the Model-View-Controller design pattern. It implements all the basic features of a core spring framework like Inversion of Control, Dependency Injection.
 
 ### X. Installation and Setup
+
+- To get started:
+1. Install the latest release:
+
+    ![GitHub release (latest by date)](https://img.shields.io/github/v/release/elkhailihamza/TechNova)
+
+2. Install WAR package by maven:
+   ```bash
+   mvn clean install
+   ```
+
+3. Create database:
+   ```bash
+   |--- technova_DB.sql # Use this file to create a database. Note: syntax is in PostgreSQL
+   ```
+
+3. Connect database to application by using application.example.properties file schema to create an application.properties file:
+  ```bash
+  |--- /resources
+      |--- application.example.properties # Has schema to create the file below
+      |--- application.properties # Use the file above to create this. Will be used to give the application database details
+  ```
+
+4. Change to your heart's content
