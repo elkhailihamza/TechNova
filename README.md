@@ -53,6 +53,7 @@ This application is a basic User Management System built using Spring Framework 
                 |--- /view          # Holds jsp files
                     |--- home.jsp        # (JSP) home jsp file
                     |--- user.jsp          # (JSP) user jsp file
+                    |--- user_update.jsp          # (JSP) user update jsp file
                 |--- dispatcher-servlet.xml          # (XML) "applicationContext.xml" gets imported into it for service injection (DI) and is generally used to which controller gets used on which end-point that return a ModelAndView for use
                 |--- web.xml          # (XML) Is used to initiate "dispatcher-servlet.xml" in this app, it has multiple other uses
   ```
