@@ -17,4 +17,14 @@
         <constructor-arg ref="userService"/>
     </bean>
 
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <map>
+                <entry key="/" value-ref="homeController" />
+                <entry key="/user" value-ref="userController" />
+                <entry key="/user/*" value-ref="userController" />
+            </map>
+        </property>
+    </bean>
+
 </beans>
