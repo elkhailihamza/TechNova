@@ -3,8 +3,6 @@ package org.project.service;
 import org.project.model.User;
 import org.project.repository.UserRepository;
 
-import java.util.List;
-
 public class UserService {
 
     private final UserRepository userRepository;
@@ -14,11 +12,11 @@ public class UserService {
     }
 
     public User fetchById(long id) {
-        return userRepository.fetchById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
-    public List<User> fetchAll() {
-        return userRepository.fetchAll();
+    public Iterable<User> fetchAll() {
+        return userRepository.findAll();
     }
 
     public User save(User entity) {
@@ -26,10 +24,13 @@ public class UserService {
     }
 
     public User update(User entity) {
-        return userRepository.update(entity);
+        if (!userRepository.existsById(entity.getId())) {
+            return null;
+        }
+        return userRepository.save(entity);
     }
 
-    public User delete(User user) {
-        return userRepository.delete(user);
+    public void delete(User entity) {
+        userRepository.delete(entity);
     }
 }

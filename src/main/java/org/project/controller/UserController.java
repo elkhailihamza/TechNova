@@ -18,7 +18,7 @@ public class UserController extends MainController {
 
     @Override
     protected ModelAndView handleGetRequest(HttpServletRequest request, HttpServletResponse response) {
-        List<User> users = userService.fetchAll();
+        Iterable<User> users = userService.fetchAll();
         request.setAttribute("users", users);
         return new ModelAndView("user");
     }

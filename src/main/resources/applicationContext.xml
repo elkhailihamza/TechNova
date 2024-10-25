@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:property-placeholder location="classpath:application.properties" />
 
@@ -40,9 +40,10 @@
 
     <tx:annotation-driven />
 
-    <bean id="userRepository" class="org.project.repository.implementations.UserRepositoryImpl">
-        <constructor-arg ref="entityManagerFactory" />
-    </bean>
+    <context:component-scan base-package="org.project"/>
+
+    <jpa:repositories base-package="org.project.repository" />
+
     <bean id="userService" class="org.project.service.UserService" >
         <constructor-arg ref="userRepository" />
     </bean>
