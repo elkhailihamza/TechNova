@@ -15,12 +15,12 @@ public class MainController implements Controller {
             method = request.getMethod();
         }
 
-        if ("POST".equalsIgnoreCase(method)) {
-            return handlePostRequest(request, response);
-        }
-        return handleGetRequest(request, response);
-
-        // CHANGE TO GIVE ERROR, OR REDIRECT BACK TO HOME IF ACTION GIVEN DOESN'T EXIST
+        return switch (method.toUpperCase()) {
+            case "GET" -> handleGetRequest(request, response);
+            case "POST" -> handlePostRequest(request, response);
+            case "DELETE" -> handleDeleteRequest(request, response);
+            default -> new ModelAndView("redirect:/user"); // change to redirect to error page
+        };
     }
 
     protected ModelAndView handleGetRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -29,6 +29,11 @@ public class MainController implements Controller {
     }
 
     protected ModelAndView handlePostRequest(HttpServletRequest request, HttpServletResponse response) {
+        // OVERRIDE TO USE
+        return null;
+    }
+
+    protected ModelAndView handleDeleteRequest(HttpServletRequest request, HttpServletResponse response) {
         // OVERRIDE TO USE
         return null;
     }

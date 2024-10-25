@@ -6,7 +6,7 @@ import org.project.model.User;
 import org.project.service.UserService;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.util.Objects;
 
 public class UserController extends MainController {
 
@@ -31,6 +31,19 @@ public class UserController extends MainController {
         User user = new User(username, password);
 
         userService.save(user);
+        return new ModelAndView("redirect:/user");
+    }
+
+    @Override
+    protected ModelAndView handleDeleteRequest(HttpServletRequest request, HttpServletResponse response) {
+        String user_id = request.getParameter("id");
+        if (user_id != null && !user_id.isBlank()) {
+            long id = Long.parseLong(user_id);
+            User user = userService.fetchById(id);
+            if (!Objects.equals(user, null)) {
+                userService.delete(user);
+            }
+        }
         return new ModelAndView("redirect:/user");
     }
 }
